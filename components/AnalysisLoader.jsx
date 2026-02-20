@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { CheckCircle2, Search, Zap, Circle } from "lucide-react";
 
 export default function AnalysisLoader({ steps = [], onComplete }) {
     const [currentStep, setCurrentStep] = useState(0);
@@ -50,7 +51,7 @@ export default function AnalysisLoader({ steps = [], onComplete }) {
                         border: "1px solid rgba(0,255,209,0.15)",
                     }}
                 >
-                    <span style={{ fontSize: 26 }}>{done ? "✅" : "🔍"}</span>
+                    <span className="flex items-center justify-center">{done ? <CheckCircle2 size={26} color="#00E87A" /> : <Search size={26} color="#00FFD1" />}</span>
                 </div>
             </div>
 
@@ -104,8 +105,8 @@ export default function AnalysisLoader({ steps = [], onComplete }) {
                                 opacity: i > currentStep ? 0.25 : 1,
                             }}
                         >
-                            <span className="shrink-0" style={{ fontSize: 14, minWidth: 18 }}>
-                                {isDone ? "✅" : isActive ? "⚡" : "○"}
+                            <span className="shrink-0 flex items-center justify-center" style={{ minWidth: 18 }}>
+                                {isDone ? <CheckCircle2 size={14} color="#00E87A" /> : isActive ? <Zap size={14} color="#00FFD1" /> : <Circle size={14} color="#6B7A99" />}
                             </span>
                             <span
                                 className="text-xs flex-1"

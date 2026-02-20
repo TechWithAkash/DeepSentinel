@@ -1,17 +1,19 @@
 "use client";
 
+import { Palette, User, Volume2, Bot, Image as ImageIcon, Sparkles, Scissors, Microscope } from "lucide-react";
+
 const GAN_SOURCES = {
-    "Stable Diffusion XL": { color: "#8B5CF6", icon: "🎨", category: "Image Gen" },
-    "DeepFaceLab": { color: "#FF4E6A", icon: "🎭", category: "Face Swap" },
-    "ElevenLabs TTS": { color: "#FFB800", icon: "🔊", category: "Voice Cloning" },
-    "GPT-4 / ChatGPT": { color: "#00E87A", icon: "🤖", category: "Text Gen" },
-    "Midjourney v6": { color: "#3B82F6", icon: "🖼️", category: "Image Gen" },
-    "DALL·E 3": { color: "#F59E0B", icon: "✨", category: "Image Gen" },
-    "Image Editing Software": { color: "#6B7280", icon: "✂️", category: "Manipulation" },
+    "Stable Diffusion XL": { color: "#8B5CF6", icon: <Palette size={24} />, category: "Image Gen" },
+    "DeepFaceLab": { color: "#FF4E6A", icon: <User size={24} />, category: "Face Swap" },
+    "ElevenLabs TTS": { color: "#FFB800", icon: <Volume2 size={24} />, category: "Voice Cloning" },
+    "GPT-4 / ChatGPT": { color: "#00E87A", icon: <Bot size={24} />, category: "Text Gen" },
+    "Midjourney v6": { color: "#3B82F6", icon: <ImageIcon size={24} />, category: "Image Gen" },
+    "DALL·E 3": { color: "#F59E0B", icon: <Sparkles size={24} />, category: "Image Gen" },
+    "Image Editing Software": { color: "#6B7280", icon: <Scissors size={24} />, category: "Manipulation" },
 };
 
 export default function GanSourceChip({ source, confidence }) {
-    const meta = GAN_SOURCES[source] || { color: "#8B949E", icon: "🤖", category: "Unknown" };
+    const meta = GAN_SOURCES[source] || { color: "#8B949E", icon: <Bot size={24} />, category: "Unknown" };
     const pct = Math.round((confidence || 0.7) * 100);
 
     return (
@@ -19,8 +21,8 @@ export default function GanSourceChip({ source, confidence }) {
             className="rounded-2xl p-5"
             style={{ background: `${meta.color}0D`, border: `1px solid ${meta.color}35` }}
         >
-            <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: meta.color, opacity: 0.7 }}>
-                🔬 GAN Source Attribution
+            <div className="text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-3" style={{ color: meta.color, opacity: 0.7 }}>
+                <Microscope size={14} /> GAN Source Attribution
             </div>
             <div className="flex items-center gap-3">
                 <div

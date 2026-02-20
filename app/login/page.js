@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { Target, Mail, Lock, AlertTriangle, Loader2, ShieldCheck, ArrowLeft } from "lucide-react";
 
 /* ─── Matrix Rain ──────────────────────────────────────────────── */
 function MatrixRain() {
@@ -123,7 +124,7 @@ export default function LoginPage() {
                 {/* Back to home */}
                 <Link href="/">
                     <div className="flex items-center gap-2 mb-6 text-xs font-semibold transition-colors" style={{ color: "#6B7A99" }}>
-                        <span>←</span> Back to VeraVision
+                        <ArrowLeft size={14} /> Back to VeraVision
                     </div>
                 </Link>
 
@@ -155,8 +156,8 @@ export default function LoginPage() {
                         <MatrixRain />
                         <div className="relative z-10">
                             <div className="flex items-center gap-2 mb-2">
-                                <span className="text-xs font-black uppercase tracking-widest" style={{ color: "#00FFD1" }}>
-                                    🎯 Demo Account
+                                <span className="text-xs font-black uppercase tracking-widest flex items-center gap-2" style={{ color: "#00FFD1" }}>
+                                    <Target size={16} /> Demo Account
                                 </span>
                                 <span className="text-xs px-2 py-0.5 rounded font-bold" style={{ background: "rgba(0,255,209,0.15)", color: "#00FFD1" }}>
                                     Click to fill
@@ -191,7 +192,7 @@ export default function LoginPage() {
                                     className="input-dark pl-10"
                                     required
                                 />
-                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: "#6B7A99" }}>✉</span>
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#6B7A99]"><Mail size={16} /></span>
                             </div>
                         </div>
 
@@ -213,7 +214,7 @@ export default function LoginPage() {
                                     className="input-dark pl-10 pr-10"
                                     required
                                 />
-                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: "#6B7A99" }}>🔒</span>
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#6B7A99]"><Lock size={16} /></span>
                                 <button
                                     type="button"
                                     onClick={() => setShowPwd(!showPwd)}
@@ -231,7 +232,7 @@ export default function LoginPage() {
                                 className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm animate-slide-up"
                                 style={{ background: "rgba(255,78,106,0.08)", border: "1px solid rgba(255,78,106,0.2)", color: "#FF4E6A" }}
                             >
-                                <span>⚠</span> {error}
+                                <AlertTriangle size={14} /> {error}
                             </div>
                         )}
 
@@ -244,10 +245,10 @@ export default function LoginPage() {
                         >
                             {loading ? (
                                 <span className="flex items-center gap-2">
-                                    <span style={{ display: "inline-block", animation: "spin-slow 1s linear infinite" }}>⚙️</span>
+                                    <Loader2 size={16} className="animate-spin" />
                                     Authenticating…
                                 </span>
-                            ) : "🛡️ Sign In → Dashboard"}
+                            ) : <span className="flex items-center justify-center gap-2"><ShieldCheck size={16} /> Sign In → Dashboard</span>}
                         </button>
                     </form>
 
@@ -266,7 +267,7 @@ export default function LoginPage() {
 
                 {/* Security note */}
                 <div className="mt-5 flex items-center justify-center gap-2 text-xs" style={{ color: "#3A4560" }}>
-                    <span>🔒</span> 256-bit encrypted · Zero data logs · SOC 2 compliant
+                    <Lock size={14} /> 256-bit encrypted · Zero data logs · SOC 2 compliant
                 </div>
             </div>
         </div>

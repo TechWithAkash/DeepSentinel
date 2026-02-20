@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { Link as LinkIcon, Map, Search, ShieldCheck, Image as ImageIcon, Film, Music, FileText, Smartphone, Globe, Brain, BadgeDollarSign, TrendingUp, UploadCloud, ClipboardList, Microscope } from "lucide-react";
 
 /* ─── Particle Canvas ─────────────────────────────────────────── */
 function ParticleCanvas() {
@@ -186,37 +187,37 @@ function Counter({ target, suffix = "", label, icon }) {
 /* ─── Data ─────────────────────────────────────────────────────── */
 const FEATURES = [
     {
-        icon: "🔗", color: "#00FFD1", bg: "rgba(0,255,209,0.08)",
+        icon: <LinkIcon size={24} />, color: "#00FFD1", bg: "rgba(0,255,209,0.08)",
         title: "Cross-Modal Consistency Engine",
         desc: "Face + voice + emotion + transcript cross-checked simultaneously. Catches contradictions no single-modal tool ever sees.",
         badge: "UNIQUE",
     },
     {
-        icon: "🔬", color: "#8B5CF6", bg: "rgba(139,92,246,0.08)",
+        icon: <Microscope size={24} />, color: "#8B5CF6", bg: "rgba(139,92,246,0.08)",
         title: "GAN Source Attribution",
         desc: "Doesn't just say 'AI-made' — tells you WHICH model. Stable Diffusion XL, DeepFaceLab, ElevenLabs, GPT-4…",
         badge: "PATENT-PENDING",
     },
     {
-        icon: "🗺️", color: "#3B82F6", bg: "rgba(59,130,246,0.08)",
+        icon: <Map size={24} />, color: "#3B82F6", bg: "rgba(59,130,246,0.08)",
         title: "GradCAM Forensic Heatmap",
         desc: "Visual pixel-level explanation of exactly which regions triggered the detection. Full explainability.",
         badge: "XAI",
     },
     {
-        icon: "📱", color: "#FFB800", bg: "rgba(255,184,0,0.08)",
+        icon: <Smartphone size={24} />, color: "#FFB800", bg: "rgba(255,184,0,0.08)",
         title: "WhatsApp Forward Scanner",
         desc: "Image + caption analyzed together. India's #1 misinfo vector — we built the only tool that treats both as one.",
         badge: "INDIA-FIRST",
     },
     {
-        icon: "🔏", color: "#00E87A", bg: "rgba(0,232,122,0.08)",
+        icon: <ShieldCheck size={24} />, color: "#00E87A", bg: "rgba(0,232,122,0.08)",
         title: "C2PA Authenticity Certificates",
         desc: "Cryptographic proof-of-origin for creators. QR-verifiable, tamper-evident, C2PA v1.3 compatible.",
         badge: "C2PA",
     },
     {
-        icon: "🇮🇳", color: "#FF4E6A", bg: "rgba(255,78,106,0.08)",
+        icon: <Globe size={24} />, color: "#FF4E6A", bg: "rgba(255,78,106,0.08)",
         title: "Vernacular Indicator Reports",
         desc: "Explanations in Hindi & Marathi. Designed for 500M+ Indians who shouldn't need English to detect fakes.",
         badge: "BHARAT-READY",
@@ -327,26 +328,33 @@ export default function LandingPage() {
                     {/* CTAs */}
                     <div className="flex flex-wrap gap-4 justify-center mb-12 animate-fade-in" style={{ animationDelay: "0.45s", animationFillMode: "both" }}>
                         <Link href="/analyze">
-                            <button className="btn-primary text-base px-9 py-4 animate-glow" style={{ fontSize: 15 }}>
-                                🔍 Launch Analyzer →
+                            <button className="btn-primary text-base px-9 py-4 animate-glow flex items-center justify-center gap-2" style={{ fontSize: 15 }}>
+                                <Search size={18} /> Launch Analyzer →
                             </button>
                         </Link>
                         <Link href="/login">
-                            <button className="btn-outline text-base px-9 py-4" style={{ fontSize: 15 }}>
-                                🛡️ Sign In / Dashboard
+                            <button className="btn-outline text-base px-9 py-4 flex items-center justify-center gap-2" style={{ fontSize: 15 }}>
+                                <ShieldCheck size={18} /> Sign In / Dashboard
                             </button>
                         </Link>
                     </div>
 
                     {/* Feature chips */}
                     <div className="flex flex-wrap gap-2 justify-center animate-fade-in" style={{ animationDelay: "0.55s", animationFillMode: "both" }}>
-                        {["🖼️ Image", "🎬 Video", "🎵 Audio", "📝 Text", "📱 WhatsApp", "🇮🇳 Hindi"].map((f) => (
+                        {[
+                            { label: "Image", icon: <ImageIcon size={14} /> },
+                            { label: "Video", icon: <Film size={14} /> },
+                            { label: "Audio", icon: <Music size={14} /> },
+                            { label: "Text", icon: <FileText size={14} /> },
+                            { label: "WhatsApp", icon: <Smartphone size={14} /> },
+                            { label: "Hindi", icon: <Globe size={14} /> }
+                        ].map((f) => (
                             <span
-                                key={f}
-                                className="text-xs px-3 py-1.5 rounded-full font-semibold"
+                                key={f.label}
+                                className="text-xs px-3 py-1.5 rounded-full font-semibold flex items-center gap-1.5"
                                 style={{ background: "rgba(0,255,209,0.06)", color: "#6B7A99", border: "1px solid rgba(0,255,209,0.1)" }}
                             >
-                                {f}
+                                {f.icon} {f.label}
                             </span>
                         ))}
                     </div>
@@ -398,9 +406,9 @@ export default function LandingPage() {
                         style={{ background: "rgba(0,255,209,0.08)", borderRadius: 20, overflow: "hidden" }}
                     >
                         {[
-                            { target: 61, suffix: "%", icon: "🧠", label: "of people cannot distinguish AI faces from real (MIT, 2025)" },
-                            { target: 25, suffix: "B", icon: "💸", label: "USD lost to deepfake-enabled fraud globally in 2024 (Deloitte)" },
-                            { target: 3000, suffix: "%", icon: "📈", label: "growth in deepfake media creation since 2019 (Sensity AI)" },
+                            { target: 61, suffix: "%", icon: <Brain size={28} />, label: "of people cannot distinguish AI faces from real (MIT, 2025)" },
+                            { target: 25, suffix: "B", icon: <BadgeDollarSign size={28} />, label: "USD lost to deepfake-enabled fraud globally in 2024 (Deloitte)" },
+                            { target: 3000, suffix: "%", icon: <TrendingUp size={28} />, label: "growth in deepfake media creation since 2019 (Sensity AI)" },
                         ].map((s, i) => (
                             <div key={i} className="bg-grid py-12 px-6 text-center" style={{ background: "var(--card)" }}>
                                 <Counter {...s} />
@@ -514,9 +522,9 @@ export default function LandingPage() {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {[
-                                { num: "01", icon: "📤", color: "#00FFD1", title: "Upload", desc: "Any file — image, video, audio, text, or WhatsApp forward screenshot. 100% private, zero storage." },
-                                { num: "02", icon: "🧠", color: "#8B5CF6", title: "Analyze", desc: "5 AI detection engines run in parallel. Cross-Modal Consistency Engine cross-checks all signals." },
-                                { num: "03", icon: "📋", color: "#FFB800", title: "Understand", desc: "Confidence score, forensic heatmap, GAN attribution, and plain-language indicators. In your language." },
+                                { num: "01", icon: <UploadCloud size={32} />, color: "#00FFD1", title: "Upload", desc: "Any file — image, video, audio, text, or WhatsApp forward screenshot. 100% private, zero storage." },
+                                { num: "02", icon: <Brain size={32} />, color: "#8B5CF6", title: "Analyze", desc: "5 AI detection engines run in parallel. Cross-Modal Consistency Engine cross-checks all signals." },
+                                { num: "03", icon: <ClipboardList size={32} />, color: "#FFB800", title: "Understand", desc: "Confidence score, forensic heatmap, GAN attribution, and plain-language indicators. In your language." },
                             ].map((step, i) => (
                                 <div key={step.num} className="text-center relative animate-slide-up" style={{ animationDelay: `${i * 0.12}s`, animationFillMode: "both" }}>
                                     {/* Big step number */}
@@ -568,8 +576,8 @@ export default function LandingPage() {
                             </p>
                             <div className="flex flex-wrap gap-4 justify-center">
                                 <Link href="/analyze">
-                                    <button className="btn-primary px-10 py-3.5 animate-glow" style={{ fontSize: 15 }}>
-                                        🔍 Try the Demo →
+                                    <button className="btn-primary px-10 py-3.5 animate-glow flex items-center justify-center gap-2" style={{ fontSize: 15 }}>
+                                        <Search size={16} /> Try the Demo →
                                     </button>
                                 </Link>
                                 <Link href="/signup">

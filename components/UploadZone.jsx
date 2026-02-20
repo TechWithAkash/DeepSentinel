@@ -1,12 +1,13 @@
 "use client";
 import { useCallback, useState } from "react";
+import { Image as ImageIcon, Film, Music, FileText, Smartphone, ClipboardList } from "lucide-react";
 
 const FILE_TYPES = {
-    image: { accept: "image/*", icon: "🖼️", label: "Image", ext: "JPG · PNG · WEBP · GIF" },
-    video: { accept: "video/*", icon: "🎬", label: "Video", ext: "MP4 · MOV · AVI · MKV" },
-    audio: { accept: "audio/*", icon: "🎵", label: "Audio", ext: "MP3 · WAV · M4A · OGG" },
-    text: { accept: ".txt,.pdf,.docx", icon: "📝", label: "Text", ext: "TXT · PDF · DOCX" },
-    whatsapp: { accept: "image/*", icon: "📱", label: "WhatsApp", ext: "Screenshot · JPG · PNG" },
+    image: { accept: "image/*", icon: <ImageIcon size={32} />, label: "Image", ext: "JPG · PNG · WEBP · GIF" },
+    video: { accept: "video/*", icon: <Film size={32} />, label: "Video", ext: "MP4 · MOV · AVI · MKV" },
+    audio: { accept: "audio/*", icon: <Music size={32} />, label: "Audio", ext: "MP3 · WAV · M4A · OGG" },
+    text: { accept: ".txt,.pdf,.docx", icon: <FileText size={32} />, label: "Text", ext: "TXT · PDF · DOCX" },
+    whatsapp: { accept: "image/*", icon: <Smartphone size={32} />, label: "WhatsApp", ext: "Screenshot · JPG · PNG" },
 };
 
 export default function UploadZone({ activeTab, onFileSelect }) {
@@ -113,8 +114,8 @@ export default function UploadZone({ activeTab, onFileSelect }) {
             {/* WhatsApp caption input */}
             {activeTab === "whatsapp" && (
                 <div className="mt-4">
-                    <label className="text-xs font-bold mb-2 block uppercase tracking-wider" style={{ color: "#6B7A99" }}>
-                        📋 Paste Caption / Text Claim from the Forward
+                    <label className="text-xs font-bold mb-2 flex items-center gap-2 uppercase tracking-wider" style={{ color: "#6B7A99" }}>
+                        <ClipboardList size={14} /> Paste Caption / Text Claim from the Forward
                     </label>
                     <textarea
                         className="input-dark resize-none"

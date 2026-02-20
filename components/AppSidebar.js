@@ -1,25 +1,48 @@
 "use client";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import {
+    LayoutDashboard,
+    Search,
+    ShieldCheck,
+    Webhook,
+    Settings,
+    Beaker,
+    BarChart3,
+    KeySquare,
+    BookOpenText,
+    LogOut,
+} from "lucide-react";
 
 const DASHBOARD_NAV = [
-    { id: "overview", href: "/dashboard", icon: "⊞", label: "Overview", badge: null },
-    { id: "scans", href: "/dashboard", icon: "🔍", label: "My Scans", badge: "12" },
-    { id: "certificates", href: "/verify", icon: "🔏", label: "Certificates", badge: null },
-    { id: "api", href: "/api-docs", icon: "🔌", label: "API Usage", badge: null },
-    { id: "settings", href: "/dashboard", icon: "⚙️", label: "Settings", badge: null },
+    { id: "overview", href: "/dashboard?tab=overview", icon: <LayoutDashboard size={16} />, label: "Overview", badge: null },
+    { id: "scans", href: "/dashboard?tab=scans", icon: <Search size={16} />, label: "My Scans", badge: "12" },
+    { id: "certificates", href: "/dashboard?tab=certificates", icon: <ShieldCheck size={16} />, label: "Certificates", badge: null },
+    { id: "api", href: "/dashboard?tab=api", icon: <Webhook size={16} />, label: "API Usage", badge: null },
+    { id: "settings", href: "/dashboard?tab=settings", icon: <Settings size={16} />, label: "Settings", badge: null },
 ];
 
 const PLATFORM_NAV = [
-    { href: "/analyze", icon: "🧬", label: "Analyze Content" },
-    { href: "/results", icon: "📊", label: "Results" },
-    { href: "/verify", icon: "🔐", label: "Verify / Certify" },
-    { href: "/api-docs", icon: "📡", label: "API Docs" },
+    { href: "/analyze", icon: <Beaker size={16} />, label: "Analyze Content" },
+    { href: "/results", icon: <BarChart3 size={16} />, label: "Results" },
+    { href: "/verify", icon: <KeySquare size={16} />, label: "Verify / Certify" },
+    { href: "/api-docs", icon: <BookOpenText size={16} />, label: "API Docs" },
 ];
 
 export default function AppSidebar() {
+    return (
+        <Suspense fallback={<div className="sidebar" />}>
+            <SidebarContent />
+        </Suspense>
+    );
+}
+
+function SidebarContent() {
     const pathname = usePathname();
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const currentTab = searchParams.get("tab") || "overview";
 
     const onLogout = () => {
         if (typeof localStorage !== "undefined") localStorage.removeItem("vv_logged_in");
@@ -82,9 +105,7 @@ export default function AppSidebar() {
                 </div>
 
                 {DASHBOARD_NAV.map((item) => {
-                    const active = pathname === item.href && item.href === "/dashboard"
-                        ? true
-                        : item.href !== "/dashboard" && isActive(item.href);
+                    const active = pathname === "/dashboard" && currentTab === item.id;
                     return (
                         <Link key={item.id} href={item.href}>
                             <div className={`sidebar-nav-item ${active ? "active" : ""}`}>
@@ -125,9 +146,13 @@ export default function AppSidebar() {
             <div className="px-3 pb-5 pt-4 flex flex-col gap-2"
                 style={{ borderTop: "1px solid rgba(0,255,209,0.07)" }}>
                 <Link href="/analyze">
-                    <button className="btn-primary w-full py-2.5 text-xs">🔍 New Analysis</button>
+                    <button className="btn-primary w-full py-2.5 text-xs flex items-center justify-center gap-2">
+                        <Search size={14} /> New Analysis
+                    </button>
                 </Link>
-                <button onClick={onLogout} className="btn-ghost w-full py-2.5 text-xs">⏻ Sign Out</button>
+                <button onClick={onLogout} className="btn-ghost w-full py-2.5 text-xs flex items-center justify-center gap-2">
+                    <LogOut size={14} /> Sign Out
+                </button>
             </div>
         </aside>
     );

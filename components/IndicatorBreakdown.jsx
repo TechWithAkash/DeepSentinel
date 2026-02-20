@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
+import { Ban, AlertTriangle, Info, Search } from "lucide-react";
 
 const SEVERITY_META = {
-    high: { color: "#FF4E6A", bg: "rgba(255,78,106,0.07)", icon: "⛔", label: "HIGH" },
-    medium: { color: "#FFB800", bg: "rgba(255,184,0,0.07)", icon: "⚠️", label: "MED" },
-    low: { color: "#6B7A99", bg: "rgba(107,122,153,0.07)", icon: "ℹ️", label: "LOW" },
+    high: { color: "#FF4E6A", bg: "rgba(255,78,106,0.07)", icon: <Ban size={16} />, label: "HIGH" },
+    medium: { color: "#FFB800", bg: "rgba(255,184,0,0.07)", icon: <AlertTriangle size={16} />, label: "MED" },
+    low: { color: "#6B7A99", bg: "rgba(107,122,153,0.07)", icon: <Info size={16} />, label: "LOW" },
 };
 
 export default function IndicatorBreakdown({ indicators = { en: [], hi: [] } }) {
@@ -19,8 +20,8 @@ export default function IndicatorBreakdown({ indicators = { en: [], hi: [] } }) 
             {/* Header */}
             <div className="flex items-center justify-between mb-5">
                 <div>
-                    <h3 className="font-bold text-sm" style={{ color: "#E8EEFF" }}>
-                        🔍 Indicator Breakdown
+                    <h3 className="font-bold text-sm flex items-center gap-2" style={{ color: "#E8EEFF" }}>
+                        <Search size={16} /> Indicator Breakdown
                     </h3>
                     <div className="flex gap-3 mt-1.5">
                         <span className="text-xs font-bold" style={{ color: "#FF4E6A" }}>
@@ -65,7 +66,7 @@ export default function IndicatorBreakdown({ indicators = { en: [], hi: [] } }) 
                                 animationFillMode: "both",
                             }}
                         >
-                            <span className="text-sm shrink-0 mt-0.5">{meta.icon}</span>
+                            <span className="shrink-0 mt-0.5">{meta.icon}</span>
                             <span className="text-xs leading-relaxed flex-1" style={{ color: "#C5CDE8" }}>
                                 {item.text}
                             </span>
@@ -81,8 +82,8 @@ export default function IndicatorBreakdown({ indicators = { en: [], hi: [] } }) 
             </div>
 
             <div className="mt-4 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-                <p className="text-xs" style={{ color: "#4B5568" }}>
-                    ⚠️ Probabilistic analysis. Not absolute proof. Cross-verify important content independently.
+                <p className="text-xs flex items-center gap-2" style={{ color: "#4B5568" }}>
+                    <AlertTriangle size={14} /> Probabilistic analysis. Not absolute proof. Cross-verify important content independently.
                 </p>
             </div>
         </div>

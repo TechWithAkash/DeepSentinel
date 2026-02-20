@@ -9,14 +9,14 @@ import {
     ANALYSIS_STEPS_TEXT,
     ANALYSIS_STEPS_VIDEO,
 } from "../../lib/mockData";
-
+import { Image as ImageIcon, Film, Music, FileText, Smartphone, Search, Zap, Target, Lock } from "lucide-react";
 
 const TABS = [
-    { id: "image", icon: "🖼️", label: "Image", desc: "JPG, PNG, WEBP" },
-    { id: "video", icon: "🎬", label: "Video", desc: "MP4, MOV, AVI" },
-    { id: "audio", icon: "🎵", label: "Audio", desc: "MP3, WAV, M4A" },
-    { id: "text", icon: "📝", label: "Text", desc: "TXT, PDF, DOCX" },
-    { id: "whatsapp", icon: "📱", label: "WhatsApp", desc: "Forward scan" },
+    { id: "image", icon: <ImageIcon size={18} />, label: "Image", desc: "JPG, PNG, WEBP" },
+    { id: "video", icon: <Film size={18} />, label: "Video", desc: "MP4, MOV, AVI" },
+    { id: "audio", icon: <Music size={18} />, label: "Audio", desc: "MP3, WAV, M4A" },
+    { id: "text", icon: <FileText size={18} />, label: "Text", desc: "TXT, PDF, DOCX" },
+    { id: "whatsapp", icon: <Smartphone size={18} />, label: "WhatsApp", desc: "Forward scan" },
 ];
 
 function getSteps(tab) {
@@ -108,7 +108,7 @@ export default function AnalyzePage() {
                                 disabled={!selectedFile}
                                 style={{ opacity: selectedFile ? 1 : 0.35, cursor: selectedFile ? "pointer" : "not-allowed", fontSize: 15 }}
                             >
-                                {selectedFile ? "🔍 Run Analysis →" : "Select a file to continue"}
+                                {selectedFile ? <><Search size={16} /> Run Analysis →</> : "Select a file to continue"}
                             </button>
 
                             {/* Demo shortcut */}
@@ -140,9 +140,9 @@ export default function AnalyzePage() {
                             style={{ animationDelay: "0.2s", animationFillMode: "both" }}
                         >
                             {[
-                                { icon: "⚡", val: "< 10s", sub: "Analysis time" },
-                                { icon: "🎯", val: "91%", sub: "Accuracy (Image)" },
-                                { icon: "🔒", val: "0 KB", sub: "Data stored" },
+                                { icon: <Zap size={20} />, val: "< 10s", sub: "Analysis time" },
+                                { icon: <Target size={20} />, val: "91%", sub: "Accuracy (Image)" },
+                                { icon: <Lock size={20} />, val: "0 KB", sub: "Data stored" },
                             ].map((s) => (
                                 <div key={s.val} className="card p-4 rounded-xl text-center">
                                     <div style={{ fontSize: 22 }}>{s.icon}</div>

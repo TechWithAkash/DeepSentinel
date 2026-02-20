@@ -1,11 +1,13 @@
 "use client";
 
+import { Zap, Flame, TrendingUp, AlertTriangle, CheckCircle2, Radio } from "lucide-react";
+
 const LEVELS = {
-    "Extreme Viral Risk": { color: "#FF4E6A", bg: "rgba(255,78,106,0.1)", icon: "⚡", tier: "EXTREME" },
-    "Critical Viral Risk": { color: "#FF4E6A", bg: "rgba(255,78,106,0.1)", icon: "🔥", tier: "CRITICAL" },
-    "High Spread Potential": { color: "#FFB800", bg: "rgba(255,184,0,0.1)", icon: "📈", tier: "HIGH" },
-    "Moderate Spread Potential": { color: "#FFB800", bg: "rgba(255,184,0,0.08)", icon: "⚠️", tier: "MODERATE" },
-    "Low Spread Potential": { color: "#00E87A", bg: "rgba(0,232,122,0.08)", icon: "✅", tier: "LOW" },
+    "Extreme Viral Risk": { color: "#FF4E6A", bg: "rgba(255,78,106,0.1)", icon: <Zap size={28} />, tier: "EXTREME" },
+    "Critical Viral Risk": { color: "#FF4E6A", bg: "rgba(255,78,106,0.1)", icon: <Flame size={28} />, tier: "CRITICAL" },
+    "High Spread Potential": { color: "#FFB800", bg: "rgba(255,184,0,0.1)", icon: <TrendingUp size={28} />, tier: "HIGH" },
+    "Moderate Spread Potential": { color: "#FFB800", bg: "rgba(255,184,0,0.08)", icon: <AlertTriangle size={28} />, tier: "MODERATE" },
+    "Low Spread Potential": { color: "#00E87A", bg: "rgba(0,232,122,0.08)", icon: <CheckCircle2 size={28} />, tier: "LOW" },
 };
 
 export default function ViralRiskBadge({ label, score }) {
@@ -17,12 +19,12 @@ export default function ViralRiskBadge({ label, score }) {
             className="rounded-2xl p-5"
             style={{ background: meta.bg, border: `1px solid ${meta.color}35` }}
         >
-            <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: meta.color, opacity: 0.7 }}>
-                📡 Misinformation Risk Score
+            <div className="text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-3" style={{ color: meta.color, opacity: 0.7 }}>
+                <Radio size={14} /> Misinformation Risk Score
             </div>
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                    <span style={{ fontSize: 24 }}>{meta.icon}</span>
+                    <span className="shrink-0">{meta.icon}</span>
                     <div>
                         <div className="font-black text-sm" style={{ color: meta.color }}>{label}</div>
                         <div className="flex items-center gap-1.5 mt-0.5">

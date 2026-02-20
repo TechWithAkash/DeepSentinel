@@ -1,7 +1,14 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState, Suspense } from "react";
+import AppLayout from "../../components/AppLayout";
+import {
+    Activity, ShieldCheck, Webhook, Settings, Image as ImageIcon,
+    Film, Music, FileText, Smartphone, Search, AlertTriangle,
+    CheckCircle2, Play, Copy, ExternalLink, KeySquare, ShieldAlert,
+    Eye, EyeOff, Lock, BarChart2, Zap
+} from "lucide-react";
 
 /* ─── Mini Sparkline ────────────────────────────────────────── */
 function Sparkline({ data, color }) {
@@ -70,142 +77,6 @@ function BarChart({ data }) {
     );
 }
 
-/* ─── Sidebar Nav Data ──────────────────────────────────────── */
-const DASHBOARD_NAV = [
-    { id: "overview", icon: "⊞", label: "Overview", badge: null },
-    { id: "scans", icon: "🔍", label: "My Scans", badge: "12" },
-    { id: "certificates", icon: "🔏", label: "Certificates", badge: null },
-    { id: "api", icon: "🔌", label: "API Usage", badge: null },
-    { id: "settings", icon: "⚙️", label: "Settings", badge: null },
-];
-
-const PLATFORM_NAV = [
-    // { href: "/", icon: "🏠", label: "Home" },
-    { href: "/analyze", icon: "🧬", label: "Analyze Content" },
-    { href: "/results", icon: "📊", label: "Results" },
-    { href: "/verify", icon: "🔐", label: "Verify / Certify" },
-    { href: "/api-docs", icon: "📡", label: "API Docs" },
-];
-
-/* ─── Sidebar Component ─────────────────────────────────────── */
-function Sidebar({ active, setActive, onLogout }) {
-    return (
-        <aside className="sidebar">
-            {/* Logo */}
-            <div
-                className="flex items-center gap-2.5 px-5 py-5"
-                style={{ borderBottom: "1px solid rgba(0,255,209,0.07)" }}
-            >
-                <svg width="28" height="28" viewBox="0 0 72 72" fill="none">
-                    <path
-                        d="M36 4L8 16v20c0 16 11 28 28 32 17-4 28-16 28-32V16L36 4z"
-                        stroke="#00FFD1" strokeWidth="1.5" fill="rgba(0,255,209,0.06)"
-                    />
-                    <circle cx="36" cy="33" r="9" fill="#00FFD1" opacity="0.9" />
-                    <path d="M36 24L36 42M27 33L45 33" stroke="#030C18" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-                <div>
-                    <div className="font-black text-sm" style={{ color: "#E8EEFF" }}>VeraVision</div>
-                    <div className="text-xs" style={{ color: "#6B7A99" }}>AI Truth Engine</div>
-                </div>
-                {/* Live dot */}
-                <div className="ml-auto flex items-center gap-1">
-                    <span
-                        className="w-1.5 h-1.5 rounded-full animate-blink"
-                        style={{ background: "#00E87A", boxShadow: "0 0 6px #00E87A" }}
-                    />
-                </div>
-            </div>
-
-            {/* User pill */}
-            <div
-                className="mx-4 my-4 p-3 rounded-xl flex items-center gap-3"
-                style={{ background: "rgba(0,255,209,0.05)", border: "1px solid rgba(0,255,209,0.1)" }}
-            >
-                <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center font-black text-sm shrink-0"
-                    style={{ background: "linear-gradient(135deg, #00C4A0, #00FFD1)", color: "#030C18" }}
-                >
-                    A
-                </div>
-                <div className="flex-1 min-w-0">
-                    <div className="font-bold text-xs truncate" style={{ color: "#E8EEFF" }}>Akash Vishwakarma</div>
-                    <div className="text-xs truncate" style={{ color: "#6B7A99" }}>akash@veravision.ai</div>
-                </div>
-                <span
-                    className="text-xs px-1.5 py-0.5 rounded font-black shrink-0"
-                    style={{ background: "rgba(0,255,209,0.1)", color: "#00FFD1", fontSize: 9 }}
-                >
-                    FREE
-                </span>
-            </div>
-
-            {/* Scrollable nav */}
-            <nav className="flex flex-col gap-0.5 px-3 flex-1" style={{ overflowY: "auto" }}>
-
-                {/* ── Dashboard section ── */}
-                <div
-                    className="text-xs font-black uppercase tracking-widest px-3 pb-1 pt-1"
-                    style={{ color: "#3A4560", letterSpacing: "0.1em" }}
-                >
-                    Dashboard
-                </div>
-
-                {DASHBOARD_NAV.map((item) => (
-                    <button
-                        key={item.id}
-                        onClick={() => setActive(item.id)}
-                        className={`sidebar-nav-item ${active === item.id ? "active" : ""}`}
-                    >
-                        <span style={{ fontSize: 14, minWidth: 18 }}>{item.icon}</span>
-                        {item.label}
-                        {item.badge && (
-                            <span
-                                className="ml-auto text-xs px-1.5 py-0.5 rounded font-black"
-                                style={{ background: "rgba(0,255,209,0.1)", color: "#00FFD1", fontSize: 9 }}
-                            >
-                                {item.badge}
-                            </span>
-                        )}
-                    </button>
-                ))}
-
-                {/* Divider */}
-                <div className="my-3 mx-1" style={{ height: 1, background: "rgba(0,255,209,0.07)" }} />
-
-                {/* ── Platform section ── */}
-                <div
-                    className="text-xs font-black uppercase tracking-widest px-3 pb-1"
-                    style={{ color: "#3A4560", letterSpacing: "0.1em" }}
-                >
-                    Platform
-                </div>
-
-                {PLATFORM_NAV.map((item) => (
-                    <Link key={item.href} href={item.href}>
-                        <div className="sidebar-nav-item">
-                            <span style={{ fontSize: 14, minWidth: 18 }}>{item.icon}</span>
-                            {item.label}
-                            <span className="ml-auto text-xs" style={{ color: "#2A3550" }}>↗</span>
-                        </div>
-                    </Link>
-                ))}
-            </nav>
-
-            {/* Bottom CTA + logout */}
-            <div
-                className="px-3 pb-5 pt-4 flex flex-col gap-2"
-                style={{ borderTop: "1px solid rgba(0,255,209,0.07)" }}
-            >
-                <Link href="/analyze">
-                    <button className="btn-primary w-full py-2.5 text-xs">🔍 New Analysis</button>
-                </Link>
-                <button onClick={onLogout} className="btn-ghost w-full py-2.5 text-xs">⏻ Sign Out</button>
-            </div>
-        </aside>
-    );
-}
-
 /* ─── Mock Data ─────────────────────────────────────────────── */
 const RECENT_SCANS = [
     { id: "sc-001", name: "politician_video.mp4", type: "Video", verdict: "Deepfake", score: 92, risk: "CRITICAL", time: "2h ago", color: "#FF4E6A" },
@@ -217,11 +88,11 @@ const RECENT_SCANS = [
 ];
 
 const ACTIVITY = [
-    { icon: "🔍", text: "Analyzed politician_video.mp4", sub: "92% deepfake confidence", time: "2h ago", color: "#FF4E6A" },
-    { icon: "🔏", text: "Certificate issued for landscape.jpg", sub: "Hash: vv_auth_7a4f…", time: "6h ago", color: "#00E87A" },
-    { icon: "📱", text: "WhatsApp forward flagged", sub: "Caption: FALSE claim", time: "1d ago", color: "#FFB800" },
-    { icon: "🔌", text: "API key generated", sub: "vv_sk_live_…", time: "2d ago", color: "#3B82F6" },
-    { icon: "🔍", text: "Analyzed ceo_statement.mp3", sub: "67% synthetic voice", time: "3d ago", color: "#FFB800" },
+    { icon: <Search size={16} />, text: "Analyzed politician_video.mp4", sub: "92% deepfake confidence", time: "2h ago", color: "#FF4E6A" },
+    { icon: <ShieldCheck size={16} />, text: "Certificate issued for landscape.jpg", sub: "Hash: vv_auth_7a4f…", time: "6h ago", color: "#00E87A" },
+    { icon: <Smartphone size={16} />, text: "WhatsApp forward flagged", sub: "Caption: FALSE claim", time: "1d ago", color: "#FFB800" },
+    { icon: <Webhook size={16} />, text: "API key generated", sub: "vv_sk_live_…", time: "2d ago", color: "#3B82F6" },
+    { icon: <Search size={16} />, text: "Analyzed ceo_statement.mp3", sub: "67% synthetic voice", time: "3d ago", color: "#FFB800" },
 ];
 
 const WEEKLY = [
@@ -237,16 +108,25 @@ const WEEKLY = [
 const THREAT_DATA = [22, 35, 28, 54, 48, 61, 72, 58, 80, 72, 85, 78];
 
 const STATS = [
-    { label: "Total Scans", val: "74", delta: "+12 this week", icon: "🔍", color: "#00FFD1", spark: [3, 7, 5, 9, 12, 8, 14, 11, 16, 12] },
-    { label: "Deepfakes Found", val: "38", delta: "51% detection rate", icon: "⚠️", color: "#FF4E6A", spark: [1, 3, 2, 5, 4, 6, 5, 8, 7, 9] },
-    { label: "Certificates", val: "11", delta: "3 this month", icon: "🔏", color: "#00E87A", spark: [1, 1, 2, 2, 3, 3, 4, 5, 6, 7] },
-    { label: "API Calls", val: "2,341", delta: "284 today", icon: "🔌", color: "#8B5CF6", spark: [50, 80, 120, 200, 150, 250, 200, 300, 280, 350] },
+    { label: "Total Scans", val: "74", delta: "+12 this week", icon: <Search size={24} />, color: "#00FFD1", spark: [3, 7, 5, 9, 12, 8, 14, 11, 16, 12] },
+    { label: "Deepfakes Found", val: "38", delta: "51% detection rate", icon: <AlertTriangle size={24} />, color: "#FF4E6A", spark: [1, 3, 2, 5, 4, 6, 5, 8, 7, 9] },
+    { label: "Certificates", val: "11", delta: "3 this month", icon: <ShieldCheck size={24} />, color: "#00E87A", spark: [1, 1, 2, 2, 3, 3, 4, 5, 6, 7] },
+    { label: "API Calls", val: "2,341", delta: "284 today", icon: <Webhook size={24} />, color: "#8B5CF6", spark: [50, 80, 120, 200, 150, 250, 200, 300, 280, 350] },
 ];
 
 /* ─── Dashboard Page ────────────────────────────────────────── */
 export default function DashboardPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-grid" />}>
+            <DashboardContent />
+        </Suspense>
+    );
+}
+
+function DashboardContent() {
     const router = useRouter();
-    const [active, setActive] = useState("overview");
+    const searchParams = useSearchParams();
+    const active = searchParams.get("tab") || "overview";
     const [threatVal, setThreatVal] = useState(72);
     const [rings, setRings] = useState([0, 0, 0, 0]);
 
@@ -265,18 +145,17 @@ export default function DashboardPage() {
         return () => clearInterval(iv);
     }, []);
 
-    const onLogout = () => {
-        localStorage.removeItem("vv_logged_in");
-        router.push("/login");
+    const TYPE_ICON = {
+        Video: <Film size={16} />,
+        Audio: <Music size={16} />,
+        Text: <FileText size={16} />,
+        WhatsApp: <Smartphone size={16} />,
+        Image: <ImageIcon size={16} />
     };
 
-    const TYPE_ICON = { Video: "🎬", Audio: "🎵", Text: "📝", WhatsApp: "📱", Image: "🖼️" };
-
     return (
-        <div className="flex min-h-screen" style={{ background: "var(--navy)" }}>
-            <Sidebar active={active} setActive={setActive} onLogout={onLogout} />
-
-            <main className="dashboard-main flex-1 bg-grid overflow-x-hidden">
+        <AppLayout>
+            <main className="flex-1 bg-grid overflow-x-hidden min-h-screen">
 
                 {/* ── Top bar ─────────────────────────────────────────── */}
                 <div
@@ -403,7 +282,9 @@ export default function DashboardPage() {
                                 >
                                     <div className="flex items-center justify-between mb-6">
                                         <div>
-                                            <h3 className="font-bold text-sm" style={{ color: "#E8EEFF" }}>📊 Scans This Week</h3>
+                                            <h3 className="font-bold text-sm flex items-center gap-2" style={{ color: "#E8EEFF" }}>
+                                                <BarChart2 size={16} /> Scans This Week
+                                            </h3>
                                             <p className="text-xs mt-0.5" style={{ color: "#6B7A99" }}>74 total analyses · +12 from last week</p>
                                         </div>
                                         <div
@@ -441,7 +322,9 @@ export default function DashboardPage() {
                                     className="card p-5 rounded-2xl animate-slide-left"
                                     style={{ animationDelay: "0.25s", animationFillMode: "both" }}
                                 >
-                                    <h3 className="font-bold text-sm mb-4" style={{ color: "#E8EEFF" }}>⚡ Recent Activity</h3>
+                                    <h3 className="font-bold text-sm mb-4 flex items-center gap-2" style={{ color: "#E8EEFF" }}>
+                                        <Zap size={16} /> Recent Activity
+                                    </h3>
                                     <div className="space-y-1">
                                         {ACTIVITY.map((a, i) => (
                                             <div key={i} className="activity-item">
@@ -472,7 +355,9 @@ export default function DashboardPage() {
                             >
                                 <div className="flex items-center justify-between mb-5">
                                     <div>
-                                        <h3 className="font-bold text-sm" style={{ color: "#E8EEFF" }}>🌐 Global Threat Intelligence</h3>
+                                        <h3 className="font-bold text-sm flex items-center gap-2" style={{ color: "#E8EEFF" }}>
+                                            <Activity size={18} color="#E8EEFF" /> Global Threat Intelligence
+                                        </h3>
                                         <p className="text-xs mt-0.5" style={{ color: "#6B7A99" }}>Live deepfake prevalence by modality</p>
                                     </div>
                                     <div className="flex items-center gap-2">
@@ -483,10 +368,10 @@ export default function DashboardPage() {
 
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                     {[
-                                        { label: "Image Deepfakes", pct: rings[0], color: "#FF4E6A", icon: "🖼️" },
-                                        { label: "Voice Clones", pct: rings[1], color: "#FFB800", icon: "🎵" },
-                                        { label: "Video Deepfakes", pct: rings[2], color: "#8B5CF6", icon: "🎬" },
-                                        { label: "AI-Written Text", pct: rings[3], color: "#3B82F6", icon: "📝" },
+                                        { label: "Image Deepfakes", pct: rings[0], color: "#FF4E6A", icon: <ImageIcon size={20} /> },
+                                        { label: "Voice Clones", pct: rings[1], color: "#FFB800", icon: <Music size={20} /> },
+                                        { label: "Video Deepfakes", pct: rings[2], color: "#8B5CF6", icon: <Film size={20} /> },
+                                        { label: "AI-Written Text", pct: rings[3], color: "#3B82F6", icon: <FileText size={20} /> },
                                     ].map((item) => (
                                         <div
                                             key={item.label}
@@ -529,9 +414,9 @@ export default function DashboardPage() {
                             {/* Quick actions */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 {[
-                                    { href: "/analyze", icon: "🔍", title: "Analyze Content", sub: "Upload & detect fakes", color: "#00FFD1", bg: "rgba(0,255,209,0.05)" },
-                                    { href: "/verify", icon: "🔏", title: "Issue Certificate", sub: "Prove content authenticity", color: "#00E87A", bg: "rgba(0,232,122,0.05)" },
-                                    { href: "/api-docs", icon: "🔌", title: "TrustScore API", sub: "Integrate detection in your app", color: "#8B5CF6", bg: "rgba(139,92,246,0.05)" },
+                                    { href: "/analyze", icon: <Search size={32} />, title: "Analyze Content", sub: "Upload & detect fakes", color: "#00FFD1", bg: "rgba(0,255,209,0.05)" },
+                                    { href: "/verify", icon: <ShieldCheck size={32} />, title: "Issue Certificate", sub: "Prove content authenticity", color: "#00E87A", bg: "rgba(0,232,122,0.05)" },
+                                    { href: "/api-docs", icon: <Webhook size={32} />, title: "TrustScore API", sub: "Integrate detection in your app", color: "#8B5CF6", bg: "rgba(139,92,246,0.05)" },
                                 ].map((item) => (
                                     <Link key={item.href} href={item.href}>
                                         <div
@@ -616,35 +501,120 @@ export default function DashboardPage() {
                         </div>
                     )}
 
-                    {/* ═══ PLACEHOLDER TABS ════════════════════════════════ */}
-                    {(active === "certificates" || active === "api" || active === "settings") && (
-                        <div className="flex flex-col items-center justify-center min-h-[60vh] gap-5 animate-fade-in">
-                            <div style={{ fontSize: 64 }}>
-                                {active === "certificates" ? "🔏" : active === "api" ? "🔌" : "⚙️"}
+                    {/* ═══ CERTIFICATES ════════════════════════════════════════ */}
+                    {active === "certificates" && (
+                        <div className="animate-fade-in">
+                            <div className="flex items-center justify-between mb-6">
+                                <h2 className="font-black text-2xl gradient-text">Authenticity Certificates</h2>
+                                <Link href="/verify">
+                                    <button className="btn-primary py-2.5 px-5 text-sm flex items-center gap-2">
+                                        <Lock size={16} /> Issue New Certificate
+                                    </button>
+                                </Link>
                             </div>
-                            <h2 className="font-black text-3xl gradient-text">
-                                {active === "certificates" ? "Authenticity Certificates"
-                                    : active === "api" ? "API Management"
-                                        : "Account Settings"}
-                            </h2>
-                            <p className="text-sm text-center max-w-md" style={{ color: "#6B7A99", lineHeight: 1.7 }}>
-                                {active === "certificates"
-                                    ? "Issue and manage cryptographic authenticity certificates. C2PA v1.3 compatible, QR-verifiable."
-                                    : active === "api"
-                                        ? "Manage your API keys, view rate limits, and monitor usage across your integrations."
-                                        : "Manage your profile, notification preferences, API quotas, and billing settings."}
-                            </p>
-                            <Link href={active === "certificates" ? "/verify" : active === "api" ? "/api-docs" : "#"}>
-                                <button className="btn-primary px-8 py-3">
-                                    {active === "certificates" ? "Go to Verify →"
-                                        : active === "api" ? "View API Docs →"
-                                            : "Edit Settings →"}
-                                </button>
-                            </Link>
+
+                            <div className="card rounded-2xl p-6">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[rgba(0,232,122,0.1)]">
+                                        <ShieldCheck size={20} color="#00E87A" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold" style={{ color: "#E8EEFF" }}>Immutable Content Registry</h3>
+                                        <p className="text-xs mt-1" style={{ color: "#6B7A99" }}>11 items secured by cryptographic hashing.</p>
+                                    </div>
+                                </div>
+                                <div className="space-y-4">
+                                    {["landscape_original.jpg", "ceo_statement_raw.wav", "press_release_v1.pdf"].map((file, i) => (
+                                        <div key={i} className="flex items-center gap-4 p-4 rounded-xl" style={{ border: "1px solid rgba(0,255,209,0.08)", background: "rgba(255,255,255,0.02)" }}>
+                                            <div className="font-mono text-xs px-2 py-1 rounded bg-[rgba(0,255,209,0.05)] text-[var(--cyan)]">vv_auth_7a4f...</div>
+                                            <div className="flex-1 min-w-0">
+                                                <div className="text-sm font-semibold truncate text-[var(--text-primary)]">{file}</div>
+                                                <div className="text-xs text-[var(--text-secondary)]">Mar {12 - i}, 2026 • SHA-256</div>
+                                            </div>
+                                            <button className="text-xs flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[rgba(0,255,209,0.2)] hover:bg-[rgba(0,255,209,0.1)] transition-colors">
+                                                <ExternalLink size={12} /> View
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ═══ API USAGE ════════════════════════════════════════ */}
+                    {active === "api" && (
+                        <div className="animate-fade-in">
+                            <div className="flex items-center justify-between mb-6">
+                                <h2 className="font-black text-2xl gradient-text">API Usage</h2>
+                                <Link href="/api-docs">
+                                    <button className="btn-outline py-2.5 px-5 text-sm flex items-center gap-2">
+                                        <Webhook size={16} /> API Docs
+                                    </button>
+                                </Link>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div className="card rounded-2xl p-6">
+                                    <h3 className="font-bold text-sm mb-4" style={{ color: "#E8EEFF" }}>Daily Quota (Free Tier)</h3>
+                                    <div className="flex items-end justify-between mb-2">
+                                        <div className="font-black text-3xl" style={{ color: "#00FFD1" }}>38 <span className="text-sm font-normal text-[var(--text-secondary)]">/ 100 calls</span></div>
+                                    </div>
+                                    <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                                        <div className="h-full bg-[var(--cyan)]" style={{ width: "38%" }} />
+                                    </div>
+                                </div>
+                                <div className="card rounded-2xl p-6">
+                                    <h3 className="font-bold text-sm mb-4" style={{ color: "#E8EEFF" }}>Active API Key</h3>
+                                    <div className="flex items-center justify-between p-3 rounded-lg border border-[rgba(0,255,209,0.15)] bg-[rgba(0,255,209,0.03)] font-mono text-xs">
+                                        <span className="text-[var(--text-primary)] tracking-wide">vv_sk_demo_••••••••••••</span>
+                                        <div className="flex items-center gap-2">
+                                            <button className="text-[var(--text-secondary)] hover:text-[var(--cyan)] transition-colors"><Eye size={16} /></button>
+                                            <button className="text-[var(--text-secondary)] hover:text-[var(--cyan)] transition-colors"><Copy size={16} /></button>
+                                        </div>
+                                    </div>
+                                    <button className="text-xs text-[var(--red)] underline mt-4 hover:opacity-80">Revoke key...</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ═══ SETTINGS ════════════════════════════════════════ */}
+                    {active === "settings" && (
+                        <div className="animate-fade-in">
+                            <h2 className="font-black text-2xl gradient-text mb-6">Account Settings</h2>
+
+                            <div className="card rounded-2xl p-6 max-w-2xl mb-6">
+                                <h3 className="font-bold text-sm mb-5 pb-3 border-b border-[rgba(0,255,209,0.1)] flex items-center gap-2" style={{ color: "#E8EEFF" }}>
+                                    <Settings size={16} /> Preferences
+                                </h3>
+
+                                <div className="space-y-6">
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <div className="text-sm font-semibold text-[var(--text-primary)]">Email Notifications</div>
+                                            <div className="text-xs text-[var(--text-secondary)]">Alerts for critical deepfake detections</div>
+                                        </div>
+                                        <div className="w-11 h-6 bg-[rgba(0,255,209,0.2)] rounded-full relative cursor-pointer border border-[rgba(0,255,209,0.3)]">
+                                            <div className="w-4 h-4 rounded-full bg-[var(--cyan)] absolute top-0.5 right-1" />
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <div className="text-sm font-semibold text-[var(--text-primary)]">Strict Strict Matching</div>
+                                            <div className="text-xs text-[var(--text-secondary)]">Requires 95% confidence on API checks</div>
+                                        </div>
+                                        <div className="w-11 h-6 bg-[rgba(255,255,255,0.1)] rounded-full relative cursor-pointer">
+                                            <div className="w-4 h-4 rounded-full bg-[var(--text-secondary)] absolute top-0.5 left-1" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button className="btn-ghost text-sm text-[var(--red)] border border-[rgba(255,78,106,0.3)] hover:bg-[rgba(255,78,106,0.1)]">Delete Account</button>
                         </div>
                     )}
                 </div>
             </main>
-        </div>
+        </AppLayout>
     );
 }

@@ -1,18 +1,19 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { FileText, Image as ImageIcon, Music, Film, FileSearch, Settings } from "lucide-react";
 
 const MODALITY_META = {
-    text: { label: "Text Engine", icon: "📝", color: "#00FFD1" },
-    image: { label: "Image Engine", icon: "🖼️", color: "#3B82F6" },
-    audio: { label: "Audio Engine", icon: "🎵", color: "#8B5CF6" },
-    video: { label: "Video Engine", icon: "🎬", color: "#FFB800" },
-    metadata: { label: "Metadata Scan", icon: "🧾", color: "#FF4E6A" },
+    text: { label: "Text Engine", icon: <FileText size={14} />, color: "#00FFD1" },
+    image: { label: "Image Engine", icon: <ImageIcon size={14} />, color: "#3B82F6" },
+    audio: { label: "Audio Engine", icon: <Music size={14} />, color: "#8B5CF6" },
+    video: { label: "Video Engine", icon: <Film size={14} />, color: "#FFB800" },
+    metadata: { label: "Metadata Scan", icon: <FileSearch size={14} />, color: "#FF4E6A" },
 };
 
 export default function SubScoreBar({ modality, score }) {
     const [width, setWidth] = useState(0);
     const ref = useRef(null);
-    const meta = MODALITY_META[modality] || { label: modality, icon: "⚙️", color: "#00FFD1" };
+    const meta = MODALITY_META[modality] || { label: modality, icon: <Settings size={14} />, color: "#00FFD1" };
     const pct = Math.round(score * 100);
 
     useEffect(() => {
@@ -28,7 +29,7 @@ export default function SubScoreBar({ modality, score }) {
         <div ref={ref} className="group">
             <div className="flex items-center justify-between mb-1.5">
                 <div className="flex items-center gap-1.5">
-                    <span style={{ fontSize: 13 }}>{meta.icon}</span>
+                    <span>{meta.icon}</span>
                     <span className="text-xs font-semibold" style={{ color: "#8B949E" }}>{meta.label}</span>
                 </div>
                 <span className="text-xs font-black" style={{ color: meta.color }}>{pct}%</span>

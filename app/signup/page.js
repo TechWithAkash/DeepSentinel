@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { User, Mail, Lock, AlertTriangle, Loader2, Rocket, Newspaper, Landmark, Building2, GraduationCap, Zap } from "lucide-react";
 
 const Shield = () => (
     <svg width="38" height="38" viewBox="0 0 72 72" fill="none">
@@ -131,7 +132,7 @@ export default function SignupPage() {
                                         placeholder="Akash Vishwakarma"
                                         className="input-dark pl-10"
                                     />
-                                    <span className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: "#6B7A99", fontSize: 14 }}>👤</span>
+                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#6B7A99]"><User size={14} /></span>
                                 </div>
                             </div>
 
@@ -147,7 +148,7 @@ export default function SignupPage() {
                                         placeholder="you@company.com"
                                         className="input-dark pl-10"
                                     />
-                                    <span className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: "#6B7A99", fontSize: 14 }}>✉</span>
+                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#6B7A99]"><Mail size={14} /></span>
                                 </div>
                             </div>
 
@@ -163,7 +164,7 @@ export default function SignupPage() {
                                         placeholder="Minimum 8 characters"
                                         className="input-dark pl-10 pr-12"
                                     />
-                                    <span className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: "#6B7A99", fontSize: 14 }}>🔒</span>
+                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#6B7A99]"><Lock size={14} /></span>
                                     <button type="button" onClick={() => setShowPwd(!showPwd)} className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: "#6B7A99" }}>
                                         {showPwd ? "Hide" : "Show"}
                                     </button>
@@ -215,12 +216,12 @@ export default function SignupPage() {
                                 </label>
                                 <div className="grid grid-cols-2 gap-2">
                                     {[
-                                        { id: "journalism", label: "📰 Journalism", desc: "Verifying news" },
-                                        { id: "govt", label: "🏛️ Government", desc: "Combating misinfo" },
-                                        { id: "personal", label: "👤 Personal", desc: "Self protection" },
-                                        { id: "enterprise", label: "🏢 Enterprise", desc: "KYC / Fraud detect" },
-                                        { id: "education", label: "🎓 Education", desc: "Research / Study" },
-                                        { id: "developer", label: "⚡ Developer", desc: "API integration" },
+                                        { id: "journalism", label: "Journalism", icon: <Newspaper size={18} />, desc: "Verifying news" },
+                                        { id: "govt", label: "Government", icon: <Landmark size={18} />, desc: "Combating misinfo" },
+                                        { id: "personal", label: "Personal", icon: <User size={18} />, desc: "Self protection" },
+                                        { id: "enterprise", label: "Enterprise", icon: <Building2 size={18} />, desc: "KYC / Fraud detect" },
+                                        { id: "education", label: "Education", icon: <GraduationCap size={18} />, desc: "Research / Study" },
+                                        { id: "developer", label: "Developer", icon: <Zap size={18} />, desc: "API integration" },
                                     ].map((u) => (
                                         <button
                                             key={u.id}
@@ -232,7 +233,7 @@ export default function SignupPage() {
                                                 border: `1px solid ${usecase === u.id ? "rgba(0,255,209,0.3)" : "rgba(0,255,209,0.07)"}`,
                                             }}
                                         >
-                                            <div className="text-sm">{u.label}</div>
+                                            <div className="text-sm font-semibold flex items-center gap-2">{u.icon} {u.label}</div>
                                             <div className="text-xs mt-0.5" style={{ color: "#6B7A99" }}>{u.desc}</div>
                                         </button>
                                     ))}
@@ -285,7 +286,7 @@ export default function SignupPage() {
                             className="mt-4 flex items-center gap-2 px-4 py-3 rounded-xl text-sm animate-slide-up"
                             style={{ background: "rgba(255,78,106,0.08)", border: "1px solid rgba(255,78,106,0.2)", color: "#FF4E6A" }}
                         >
-                            <span>⚠</span> {error}
+                            <AlertTriangle size={14} /> {error}
                         </div>
                     )}
 
@@ -320,17 +321,16 @@ export default function SignupPage() {
                             >
                                 {loading ? (
                                     <span className="flex items-center gap-2 justify-center">
-                                        <span style={{ display: "inline-block", animation: "spin-slow 1s linear infinite" }}>⚙️</span>
-                                        Creating account…
+                                        <Loader2 size={16} className="animate-spin" /> Creating account…
                                     </span>
-                                ) : "🚀 Launch Dashboard"}
+                                ) : <span className="flex items-center justify-center gap-2"><Rocket size={16} /> Launch Dashboard</span>}
                             </button>
                         )}
                     </div>
                 </div>
 
                 <div className="mt-5 flex items-center justify-center gap-2 text-xs" style={{ color: "#3A4560" }}>
-                    <span>🔒</span> 256-bit encrypted · SOC 2 compliant
+                    <Lock size={14} /> 256-bit encrypted · SOC 2 compliant
                 </div>
             </div>
         </div>
