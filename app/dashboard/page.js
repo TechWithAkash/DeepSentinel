@@ -80,7 +80,7 @@ const DASHBOARD_NAV = [
 ];
 
 const PLATFORM_NAV = [
-    { href: "/", icon: "🏠", label: "Home" },
+    // { href: "/", icon: "🏠", label: "Home" },
     { href: "/analyze", icon: "🧬", label: "Analyze Content" },
     { href: "/results", icon: "📊", label: "Results" },
     { href: "/verify", icon: "🔐", label: "Verify / Certify" },
