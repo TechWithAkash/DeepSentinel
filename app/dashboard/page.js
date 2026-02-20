@@ -126,11 +126,11 @@ function Sidebar({ active, setActive, onLogout }) {
                     className="w-8 h-8 rounded-full flex items-center justify-center font-black text-sm shrink-0"
                     style={{ background: "linear-gradient(135deg, #00C4A0, #00FFD1)", color: "#030C18" }}
                 >
-                    D
+                    A
                 </div>
                 <div className="flex-1 min-w-0">
-                    <div className="font-bold text-xs truncate" style={{ color: "#E8EEFF" }}>Demo User</div>
-                    <div className="text-xs truncate" style={{ color: "#6B7A99" }}>demo@veravision.ai</div>
+                    <div className="font-bold text-xs truncate" style={{ color: "#E8EEFF" }}>Akash Vishwakarma</div>
+                    <div className="text-xs truncate" style={{ color: "#6B7A99" }}>akash@veravision.ai</div>
                 </div>
                 <span
                     className="text-xs px-1.5 py-0.5 rounded font-black shrink-0"
@@ -346,7 +346,7 @@ export default function DashboardPage() {
                                                 Active Session
                                             </span>
                                         </div>
-                                        <h2 className="font-black text-2xl gradient-text">Good evening, Demo User 👋</h2>
+                                        <h2 className="font-black text-2xl gradient-text">Good evening, Akash 👋</h2>
                                         <p className="text-sm mt-1" style={{ color: "#6B7A99" }}>
                                             You have <strong style={{ color: "#FFB800" }}>62 API calls</strong> remaining today.{" "}
                                             Your last scan was <strong style={{ color: "#00FFD1" }}>2 hours ago.</strong>

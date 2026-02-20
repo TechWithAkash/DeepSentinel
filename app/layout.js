@@ -1,7 +1,4 @@
 import "./globals.css";
-import { Suspense } from "react";
-import ConditionalNav from "../components/ConditionalNav";
-import NavPadding from "../components/NavPadding";
 
 export const metadata = {
   title: "VeraVision — AI Deepfake Detection Platform",
@@ -19,12 +16,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-screen" style={{ background: "var(--navy)" }}>
-        <Suspense fallback={null}>
-          <ConditionalNav />
-          <NavPadding>
-            {children}
-          </NavPadding>
-        </Suspense>
+        {children}
       </body>
     </html>
   );
