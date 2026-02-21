@@ -25,7 +25,7 @@ const DASHBOARD_NAV = [
 
 const PLATFORM_NAV = [
     { href: "/analyze", icon: <Beaker size={16} />, label: "Analyze Content" },
-    { href: "/results", icon: <BarChart3 size={16} />, label: "Results" },
+    // { href: "/results", icon: <BarChart3 size={16} />, label: "Results" },
     { href: "/verify", icon: <KeySquare size={16} />, label: "Verify / Certify" },
     { href: "/api-docs", icon: <BookOpenText size={16} />, label: "API Docs" },
 ];
