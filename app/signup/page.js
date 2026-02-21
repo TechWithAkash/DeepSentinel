@@ -89,7 +89,7 @@ export default function SignupPage() {
                         <Shield />
                         <div>
                             <div className="font-black text-lg" style={{ color: "#E8EEFF" }}>Create Account</div>
-                            <div className="text-xs" style={{ color: "#6B7A99" }}>Join the VeraVision network</div>
+                            <div className="text-xs" style={{ color: "#6B7A99" }}>Join the DRISHTI network</div>
                         </div>
                     </div>
 

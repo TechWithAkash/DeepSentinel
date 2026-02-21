@@ -39,7 +39,7 @@ export default function Navbar() {
                     </div>
                     <div className="flex flex-col leading-none">
                         <span className="font-black text-base tracking-tight" style={{ color: "#00FFD1" }}>
-                            VeraVision
+                            DRISHTI
                         </span>
                         <span className="text-[9px] font-semibold tracking-widest uppercase" style={{ color: "rgba(0,255,209,0.5)" }}>
                             AI Truth Engine

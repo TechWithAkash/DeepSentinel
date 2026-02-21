@@ -33,8 +33,8 @@ export default function AnalyzePage() {
 
     const handleAnalyze = () => {
         if (!selectedFile) return;
-        localStorage.setItem("veravision_result_type", activeTab);
-        localStorage.setItem("veravision_file_name", selectedFile.name);
+        localStorage.setItem("drishti_result_type", activeTab);
+        localStorage.setItem("drishti_file_name", selectedFile.name);
         setAnalyzing(true);
     };
 
@@ -53,7 +53,7 @@ export default function AnalyzePage() {
                         </span>
                         <h1 className="font-black text-4xl mb-3 gradient-text">Analyze Content</h1>
                         <p className="text-sm" style={{ color: "#6B7A99", maxWidth: 400, margin: "0 auto" }}>
-                            VeraVision&apos;s AI engines analyze your file in seconds.
+                            DRISHTI&apos;s AI engines analyze your file in seconds.
                             <span style={{ color: "#00FFD1" }}> Zero data stored. Fully private.</span>
                         </p>
                     </div>
@@ -117,8 +117,8 @@ export default function AnalyzePage() {
                                     className="text-xs"
                                     style={{ color: "#6B7A99", textDecoration: "underline" }}
                                     onClick={() => {
-                                        localStorage.setItem("veravision_result_type", activeTab);
-                                        localStorage.setItem("veravision_file_name", `demo_${activeTab}_sample`);
+                                        localStorage.setItem("drishti_result_type", activeTab);
+                                        localStorage.setItem("drishti_file_name", `demo_${activeTab}_sample`);
                                         setSelectedFile({ name: `demo_${activeTab}_sample` });
                                         setAnalyzing(true);
                                     }}

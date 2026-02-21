@@ -65,7 +65,7 @@ function SidebarContent() {
                     <path d="M36 24L36 42M27 33L45 33" stroke="#030C18" strokeWidth="2" strokeLinecap="round" />
                 </svg>
                 <div>
-                    <div className="font-black text-sm" style={{ color: "#E8EEFF" }}>VeraVision</div>
+                    <div className="font-black text-sm" style={{ color: "#E8EEFF" }}>DRISHTI</div>
                     <div className="text-xs" style={{ color: "#6B7A99" }}>AI Truth Engine</div>
                 </div>
                 <div className="ml-auto flex items-center gap-1">
@@ -87,7 +87,7 @@ function SidebarContent() {
                 </div>
                 <div className="flex-1 min-w-0">
                     <div className="font-bold text-xs truncate" style={{ color: "#E8EEFF" }}>Akash Vishwakarma</div>
-                    <div className="text-xs truncate" style={{ color: "#6B7A99" }}>akash@veravision.ai</div>
+                    <div className="text-xs truncate" style={{ color: "#6B7A99" }}>akash@drishti.ai</div>
                 </div>
                 <span className="text-xs px-1.5 py-0.5 rounded font-black shrink-0"
                     style={{ background: "rgba(0,255,209,0.1)", color: "#00FFD1", fontSize: 9 }}>

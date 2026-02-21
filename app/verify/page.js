@@ -97,7 +97,7 @@ export default function VerifyPage() {
                                         Generate Authenticity Certificate
                                     </h3>
                                     <p className="text-sm mb-7" style={{ color: "#6B7A99" }}>
-                                        Upload your original file. VeraVision generates a cryptographic hash and issues a C2PA-compatible certificate you can share publicly.
+                                        Upload your original file. DRISHTI generates a cryptographic hash and issues a C2PA-compatible certificate you can share publicly.
                                     </p>
 
                                     {/* File drop */}
@@ -177,7 +177,7 @@ export default function VerifyPage() {
                                         <div className="flex items-center gap-3 mb-5">
                                             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ background: "rgba(0,232,122,0.1)" }}><ShieldCheck size={20} color="#00E87A" /></div>
                                             <div>
-                                                <div className="font-bold text-sm" style={{ color: "#E8EEFF" }}>VeraVision Authenticity Certificate</div>
+                                                <div className="font-bold text-sm" style={{ color: "#E8EEFF" }}>DRISHTI Authenticity Certificate</div>
                                                 <div className="text-xs mt-0.5" style={{ color: "#6B7A99" }}>{cert.standard}</div>
                                             </div>
                                             <div className="ml-auto text-xs px-2 py-1 rounded font-black uppercase tracking-wider" style={{ background: "rgba(0,232,122,0.1)", color: "#00E87A", border: "1px solid rgba(0,232,122,0.25)" }}>
@@ -219,7 +219,7 @@ export default function VerifyPage() {
                                 Verify Content Authenticity
                             </h3>
                             <p className="text-sm mb-7" style={{ color: "#6B7A99" }}>
-                                Paste a VeraVision authentication hash from a piece of content to verify it&apos;s genuine and unmodified.
+                                Paste a DRISHTI authentication hash from a piece of content to verify it&apos;s genuine and unmodified.
                             </p>
 
                             <label className="text-xs font-bold mb-2 block uppercase tracking-wider" style={{ color: "#6B7A99" }}>
@@ -260,7 +260,7 @@ export default function VerifyPage() {
                                     </div>
                                     <div className="text-sm mt-2" style={{ color: "#6B7A99", maxWidth: 340, margin: "8px auto 0" }}>
                                         {verifyResult === "valid"
-                                            ? "This content was certified on the VeraVision Authenticity Network and has not been tampered with."
+                                            ? "This content was certified on the DRISHTI Authenticity Network and has not been tampered with."
                                             : "This hash does not match any certificate in our network. The content may be unverified or modified."}
                                     </div>
                                 </div>

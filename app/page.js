@@ -249,7 +249,7 @@ export default function LandingPage() {
                                 className="font-black leading-none tracking-tight gradient-text"
                                 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
                             >
-                                VeraVision
+                                DRISHTI
                             </h1>
                         </motion.div>
 
@@ -435,7 +435,7 @@ export default function LandingPage() {
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center mb-16">
                         <span className="text-xs uppercase tracking-widest font-bold text-[#8B5CF6]">Proprietary Technology</span>
                         <h2 className="font-black text-4xl mt-3">5 Core Engines. One Verdict.</h2>
-                        <p className="mt-4 text-[#8B949E] max-w-2xl mx-auto">We don't rely on a single model. VeraVision parallel-processes your files through modal-specific detectors, merging the confidence scores to virtually eliminate false positives.</p>
+                        <p className="mt-4 text-[#8B949E] max-w-2xl mx-auto">We don't rely on a single model. DRISHTI parallel-processes your files through modal-specific detectors, merging the confidence scores to virtually eliminate false positives.</p>
                     </motion.div>
 
                     <motion.div
@@ -462,7 +462,7 @@ export default function LandingPage() {
                 <div className="max-w-7xl mx-auto">
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center mb-16">
                         <span className="text-xs uppercase tracking-widest font-bold text-[#00FFD1]">Differentiators</span>
-                        <h2 className="font-black text-4xl mt-3 mb-4">What Sets VeraVision Apart</h2>
+                        <h2 className="font-black text-4xl mt-3 mb-4">What Sets DRISHTI Apart</h2>
                         <p className="text-base text-[#8B949E] max-w-xl mx-auto">Six unique innovations making this the most comprehensive deepfake detection platform built natively for India & beyond.</p>
                     </motion.div>
 
@@ -570,13 +570,13 @@ export default function LandingPage() {
                     <div className="flex items-center gap-3">
                         <ShieldLogo size={32} />
                         <div>
-                            <div className="font-black text-lg text-white">VeraVision</div>
+                            <div className="font-black text-lg text-white">DRISHTI</div>
                             <div className="text-xs text-[#00FFD1]">Next-Gen Content Authenticity</div>
                         </div>
                     </div>
                     <div className="text-center md:text-right text-xs text-[#6B7A99] max-w-xs">
                         Built for India. Powered by Open Source Models & Proprietary Cross-Modal Tech.
-                        © {new Date().getFullYear()} VeraVision. All rights reserved.
+                        © {new Date().getFullYear()} DRISHTI. All rights reserved.
                     </div>
                 </div>
             </footer>

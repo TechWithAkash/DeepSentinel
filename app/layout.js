@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "VeraVision — AI Deepfake Detection Platform",
+  title: "DRISHTI — AI Deepfake Detection Platform",
   description:
-    "VeraVision detects AI-generated content and deepfakes across text, images, audio, and video. Get confidence scores, forensic heatmaps, and GAN attribution.",
+    "DRISHTI (Deepfake Recognition & Image Synthetic Hybrid Truth Identifier) detects AI-generated content and deepfakes across text, images, audio, and video. Get confidence scores, forensic heatmaps, and GAN attribution.",
 };
 
 export default function RootLayout({ children }) {

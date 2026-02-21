@@ -13,7 +13,7 @@ const ENDPOINTS = [
             { name: "type", type: "string", req: false, desc: "Media type hint: image | video | audio | text | whatsapp" },
             { name: "language", type: "string", req: false, desc: "Response language: en | hi | mr" },
         ],
-        example_request: `curl -X POST https://api.veravision.ai/v1/analyze \\
+        example_request: `curl -X POST https://api.drishti.ai/v1/analyze \\
   -H "Authorization: Bearer vv_sk_demo_7a4f2b1c" \\
   -F "file=@suspicious_image.jpg" \\
   -F "type=image"`,
@@ -49,7 +49,7 @@ const ENDPOINTS = [
         params: [
             { name: "request_id", type: "string", req: true, desc: "The request ID returned from /v1/analyze" },
         ],
-        example_request: `curl https://api.veravision.ai/v1/analyze/req_8f4a2b1c \\
+        example_request: `curl https://api.drishti.ai/v1/analyze/req_8f4a2b1c \\
   -H "Authorization: Bearer vv_sk_demo_7a4f2b1c"`,
         example_response: `{
   "request_id": "req_8f4a2b1c",
@@ -66,14 +66,14 @@ const ENDPOINTS = [
         params: [
             { name: "file", type: "File", req: true, desc: "The original file to certify" },
         ],
-        example_request: `curl -X POST https://api.veravision.ai/v1/certify \\
+        example_request: `curl -X POST https://api.drishti.ai/v1/certify \\
   -H "Authorization: Bearer vv_sk_demo_7a4f2b1c" \\
   -F "file=@my_original.jpg"`,
         example_response: `{
   "certificate_id": "cert_7a4f2b1c",
   "hash": "vv_auth_7a4f2b1c9e8d3a6f0b5c2d1e4f7a8b9c",
   "issued_at": "2026-02-20T22:03:30.000Z",
-  "qr_url": "https://verify.veravision.ai/cert_7a4f2b1c",
+  "qr_url": "https://verify.drishti.ai/cert_7a4f2b1c",
   "c2pa_compatible": true
 }`,
     },
@@ -81,18 +81,18 @@ const ENDPOINTS = [
         method: "GET",
         path: "/v1/verify/:hash",
         label: "Verify Certificate Hash",
-        desc: "Check if a VeraVision authentication hash is valid and return the associated certificate metadata.",
+        desc: "Check if a DRISHTI authentication hash is valid and return the associated certificate metadata.",
         params: [
             { name: "hash", type: "string", req: true, desc: "The vv_auth_... hash to verify" },
         ],
-        example_request: `curl https://api.veravision.ai/v1/verify/vv_auth_7a4f2b1c \\
+        example_request: `curl https://api.drishti.ai/v1/verify/vv_auth_7a4f2b1c \\
   -H "Authorization: Bearer vv_sk_demo_7a4f2b1c"`,
         example_response: `{
   "valid": true,
   "certificate": {
     "file_name": "original_photo.jpg",
     "issued_at": "2026-02-20T22:03:30.000Z",
-    "issuer": "VeraVision Authenticity Network"
+    "issuer": "DRISHTI Authenticity Network"
   }
 }`,
     },
@@ -122,7 +122,7 @@ export default function ApiDocsPage() {
                         </span>
                         <h1 className="font-black text-4xl mb-3 gradient-text">API Documentation</h1>
                         <p className="text-sm" style={{ color: "#6B7A99", maxWidth: 440, margin: "0 auto" }}>
-                            Integrate VeraVision&apos;s detection engine into your product with 3 lines of code.
+                            Integrate DRISHTI&apos;s detection engine into your product with 3 lines of code.
                             RESTful API with structured JSON responses.
                         </p>
                     </div>
@@ -134,7 +134,7 @@ export default function ApiDocsPage() {
                     >
                         <div>
                             <div className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#6B7A99" }}>Base URL</div>
-                            <code className="font-mono text-xs" style={{ color: "#00FFD1" }}>api.veravision.ai</code>
+                            <code className="font-mono text-xs" style={{ color: "#00FFD1" }}>api.drishti.ai</code>
                         </div>
                         <div>
                             <div className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#6B7A99" }}>Demo Key</div>

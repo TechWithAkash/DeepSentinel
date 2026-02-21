@@ -69,7 +69,7 @@ function ScanLine() {
     );
 }
 
-const DEMO = { email: "demo@veravision.ai", password: "deepfake2026" };
+const DEMO = { email: "demo@drishti.ai", password: "deepfake2026" };
 
 export default function LoginPage() {
     const router = useRouter();
@@ -124,7 +124,7 @@ export default function LoginPage() {
                 {/* Back to home */}
                 <Link href="/">
                     <div className="flex items-center gap-2 mb-6 text-xs font-semibold transition-colors" style={{ color: "#6B7A99" }}>
-                        <ArrowLeft size={14} /> Back to VeraVision
+                        <ArrowLeft size={14} /> Back to DRISHTI
                     </div>
                 </Link>
 
@@ -136,7 +136,7 @@ export default function LoginPage() {
                         <Shield />
                         <div>
                             <div className="font-black text-lg" style={{ color: "#E8EEFF" }}>Welcome back</div>
-                            <div className="text-xs" style={{ color: "#6B7A99" }}>Sign in to your VeraVision account</div>
+                            <div className="text-xs" style={{ color: "#6B7A99" }}>Sign in to your DRISHTI account</div>
                         </div>
                         <div className="ml-auto flex items-center gap-1.5">
                             <span className="status-live" />

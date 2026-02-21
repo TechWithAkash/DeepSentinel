@@ -29,8 +29,8 @@ export default function ResultsPage() {
     const [reportSaved, setReportSaved] = useState(false);
 
     useEffect(() => {
-        const type = localStorage.getItem("veravision_result_type") || "image";
-        const name = localStorage.getItem("veravision_file_name") || "uploaded_file";
+        const type = localStorage.getItem("drishti_result_type") || "image";
+        const name = localStorage.getItem("drishti_file_name") || "uploaded_file";
         setResult(MOCK_RESULTS[type] || MOCK_RESULTS.image);
         setFileName(name);
     }, []);
